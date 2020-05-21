@@ -1,0 +1,12 @@
+CHIP Nor16 {
+    IN
+        in[16]; // 16 bit bus
+    OUT
+        out; // single bit: 1 if all zeroes only
+
+    PARTS:
+        Or8Way(in=in[0..7], out=front);
+        Or8Way(in=in[8..15], out=back);
+        Or(a=front, b=back, out=anyOne);
+        Not(in=anyOne, out=out);
+}
